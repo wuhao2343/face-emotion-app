@@ -72,7 +72,7 @@ python run.py
 4. 下载两个 ONNX 模型到 `models/`
 5. 启动 uvicorn + 自动打开浏览器
 
-如果想用 GPU 加速(可选):
+如果想用 GPU 加速(推荐):
 
 ```bash
 .venv\Scripts\pip install onnxruntime-directml
@@ -209,14 +209,13 @@ CAMERA_PROBE_RANGE=4
 
 ## 🐛 故障排查
 
-| 现象 | 解决 |
-|------|------|
-| 启动报 `onnxruntime not found` | 确认激活了 `.venv`,或直接 `python run.py` 让它自建 |
-| 启动报 `Failed to download ...` | 手动下载两个 ONNX 到 `models/`,见上文 |
-| 大文件下载 SSL 中断 | 已自动断点续传 8 次;若仍失败,看终端日志 |
-| 摄像头黑屏 | Windows 设置 → 隐私 → 摄像头 → 允许桌面应用访问 |
-| 想用 GPU | `pip install onnxruntime-directml`,然后启动 |
-| `Object has no attribute 'device'` | 跑 `git pull` 后重装依赖 (老代码引用了 torch 字段) |
+| 现象                                 | 解决 |
+|------------------------------------|------|
+| 启动报 `onnxruntime not found`        | 确认激活了 `.venv`,或直接 `python run.py` 让它自建 |
+| 启动报 `Failed to download ...`       | 手动下载两个 ONNX 到 `models/`,见上文 |
+| 大文件下载 SSL 中断                       | 已自动断点续传 8 次;若仍失败,看终端日志 |
+| 摄像头黑屏                              | Windows 设置 → 隐私 → 摄像头 → 允许桌面应用访问 |
+| GPU 加速                             | `pip install onnxruntime-directml`,然后启动 |
 
 ---
 
