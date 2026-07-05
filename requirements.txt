@@ -1,0 +1,23 @@
+﻿# ---- ONNX inference -----------------------------------------------------
+onnxruntime>=1.18.0
+# Optional GPU acceleration on Windows / DirectX 12 (install separately):
+#   pip install onnxruntime-directml
+numpy>=1.26.0,<3.0
+Pillow>=10.0.0
+
+# ---- Model download helper (no torch dependency) ------------------------
+huggingface-hub>=0.24.0
+
+# ---- Computer vision / video I/O ----------------------------------------
+opencv-python>=4.9.0
+# Static ffmpeg binary, used to mux the original audio stream back into
+# the annotated video produced by cv2.VideoWriter (which has no audio
+# support of its own). Without this the processed MP4 is silent.
+imageio-ffmpeg>=0.5.0
+
+# ---- Web server ----------------------------------------------------------
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+pydantic>=2.7.0
+pydantic-settings>=2.4.0
