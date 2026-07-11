@@ -1,198 +1,211 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Face Emotion · 人脸情绪识别</title>
-  <link rel="stylesheet" href="/static/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Face Emotion · 人脸情绪识别</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div class="aurora"></div>
-  <div class="grain"></div>
+<div class="aurora"></div>
+<div class="grain"></div>
 
-  <main class="app">
+<main class="app">
     <!-- Header ------------------------------------------------------- -->
     <header class="hero glass">
-      <div class="brand">
-        <div class="logo">
-          <svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
-            <defs>
-              <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#00d4ff" />
-                <stop offset="100%" stop-color="#7b2ff7" />
-              </linearGradient>
-            </defs>
-            <circle cx="32" cy="32" r="30" fill="url(#lg)" opacity="0.18" />
-            <circle cx="32" cy="32" r="22" fill="none" stroke="url(#lg)" stroke-width="2.5" />
-            <circle cx="24" cy="28" r="3" fill="url(#lg)" />
-            <circle cx="40" cy="28" r="3" fill="url(#lg)" />
-            <path d="M22 42 Q32 50 42 42" stroke="url(#lg)" stroke-width="2.5" fill="none" stroke-linecap="round" />
-          </svg>
+        <div class="brand">
+            <div class="logo">
+                <svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="100%" stop-color="#7b2ff7"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="32" cy="32" r="30" fill="url(#lg)" opacity="0.18"/>
+                    <circle cx="32" cy="32" r="22" fill="none" stroke="url(#lg)" stroke-width="2.5"/>
+                    <circle cx="24" cy="28" r="3" fill="url(#lg)"/>
+                    <circle cx="40" cy="28" r="3" fill="url(#lg)"/>
+                    <path d="M22 42 Q32 50 42 42" stroke="url(#lg)" stroke-width="2.5" fill="none"
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div>
+                <h1>Face Emotion</h1>
+                <p class="subtitle">YOLOv8-face · ViT emotion · ONNX Runtime</p>
+            </div>
         </div>
-        <div>
-          <h1>Face Emotion</h1>
-          <p class="subtitle">YOLOv8-face · ViT emotion · ONNX Runtime</p>
+        <div class="status" id="status-pill">
+            <span class="dot"></span>
+            <span id="status-text">Checking…</span>
         </div>
-      </div>
-      <div class="status" id="status-pill">
-        <span class="dot"></span>
-        <span id="status-text">Checking…</span>
-      </div>
     </header>
 
     <!-- Tabs --------------------------------------------------------- -->
     <nav class="tabs glass" role="tablist">
-      <button class="tab active" data-tab="image" role="tab">
-        <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <path d="M21 15l-5-5L5 21" />
-        </svg>
-        图片识别
-      </button>
-      <button class="tab" data-tab="video" role="tab">
-        <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="5" width="14" height="14" rx="2" />
-          <path d="M22 8l-6 4 6 4z" />
-        </svg>
-        视频处理
-      </button>
-      <button class="tab" data-tab="camera" role="tab">
-        <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 7h4l2-2h6l2 2h4v12H3z" />
-          <circle cx="12" cy="13" r="4" />
-        </svg>
-        摄像头实时
-      </button>
-      <button class="tab" data-tab="api" role="tab">
-        <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 7l-5 5 5 5" />
-          <path d="M15 7l5 5-5 5" />
-          <path d="M13 5l-2 14" />
-        </svg>
-        API 文档
-      </button>
+        <button class="tab active" data-tab="image" role="tab">
+            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            图片识别
+        </button>
+        <button class="tab" data-tab="video" role="tab">
+            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="14" height="14" rx="2"/>
+                <path d="M22 8l-6 4 6 4z"/>
+            </svg>
+            视频处理
+        </button>
+        <button class="tab" data-tab="camera" role="tab">
+            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7h4l2-2h6l2 2h4v12H3z"/>
+                <circle cx="12" cy="13" r="4"/>
+            </svg>
+            摄像头实时
+        </button>
+        <button class="tab" data-tab="api" role="tab">
+            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 7l-5 5 5 5"/>
+                <path d="M15 7l5 5-5 5"/>
+                <path d="M13 5l-2 14"/>
+            </svg>
+            API 文档
+        </button>
     </nav>
 
     <!-- Image tab ---------------------------------------------------- -->
     <section class="panel glass active" data-panel="image">
-      <div class="dropzone" id="img-drop">
-        <input type="file" id="img-input" accept="image/*" hidden />
-        <div class="dropzone-content">
-          <div class="upload-icon">
-            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3v12" />
-              <path d="M7 8l5-5 5 5" />
-              <path d="M5 21h14" />
-            </svg>
-          </div>
-          <p>点击或拖放图片到此处</p>
-          <p class="hint">支持 JPG / PNG / WEBP,最大 4GB</p>
+        <div class="dropzone" id="img-drop">
+            <input type="file" id="img-input" accept="image/*" hidden/>
+            <div class="dropzone-content">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3v12"/>
+                        <path d="M7 8l5-5 5 5"/>
+                        <path d="M5 21h14"/>
+                    </svg>
+                </div>
+                <p>点击或拖放图片到此处</p>
+                <p class="hint">支持 JPG / PNG / WEBP,最大 4GB</p>
+            </div>
         </div>
-      </div>
-      <div class="result-grid">
-        <div class="result-card">
-          <h3>原图</h3>
-          <div class="img-frame"><img id="img-original" alt="original" /></div>
+        <div class="result-grid">
+            <div class="result-card">
+                <h3>原图</h3>
+                <div class="img-frame"><img id="img-original" alt="original"/></div>
+            </div>
+            <div class="result-card">
+                <h3>识别结果</h3>
+                <div class="img-frame"><img id="img-result" alt="result"/></div>
+            </div>
         </div>
-        <div class="result-card">
-          <h3>识别结果</h3>
-          <div class="img-frame"><img id="img-result" alt="result" /></div>
+        <div class="emotion-chart" id="img-emotion-chart" hidden>
+            <h3>情绪分布</h3>
+            <div class="bars" id="img-bars"></div>
         </div>
-      </div>
-      <div class="emotion-chart" id="img-emotion-chart" hidden>
-        <h3>情绪分布</h3>
-        <div class="bars" id="img-bars"></div>
-      </div>
     </section>
 
     <!-- Video tab ---------------------------------------------------- -->
     <section class="panel glass" data-panel="video">
-      <div class="dropzone" id="vid-drop">
-        <input type="file" id="vid-input" accept="video/*" hidden />
-        <div class="dropzone-content">
-          <div class="upload-icon">
-            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 6a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              <path d="M21 8l-4 4 4 4z" />
-            </svg>
-          </div>
-          <p>点击或拖放视频到此处</p>
-          <p class="hint">支持 MP4 / MOV / AVI / MKV / WEBM,最大 4GB</p>
+        <div class="dropzone" id="vid-drop">
+            <input type="file" id="vid-input" accept="video/*" hidden/>
+            <div class="dropzone-content">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 6a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <path d="M21 8l-4 4 4 4z"/>
+                    </svg>
+                </div>
+                <p>点击或拖放视频到此处</p>
+                <p class="hint">支持 MP4 / MOV / AVI / MKV / WEBM,最大 4GB</p>
+            </div>
         </div>
-      </div>
 
-      <div class="video-status" id="vid-status" hidden>
-        <div class="progress-wrap">
-          <div class="progress-bar"><div class="progress-fill" id="vid-progress"></div></div>
-          <span id="vid-percent">0%</span>
+        <div class="video-status" id="vid-status" hidden>
+            <div class="progress-wrap">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="vid-progress"></div>
+                </div>
+                <span id="vid-percent">0%</span>
+            </div>
+            <p id="vid-message">准备中…</p>
+            <a id="vid-download" class="btn primary" hidden>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v12"/>
+                    <path d="M7 12l5 5 5-5"/>
+                    <path d="M5 21h14"/>
+                </svg>
+                下载标注后的 MP4
+            </a>
         </div>
-        <p id="vid-message">准备中…</p>
-        <a id="vid-download" class="btn primary" hidden>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3v12" />
-            <path d="M7 12l5 5 5-5" />
-            <path d="M5 21h14" />
-          </svg>
-          下载标注后的 MP4
-        </a>
-      </div>
     </section>
 
     <!-- Camera tab --------------------------------------------------- -->
     <section class="panel glass" data-panel="camera">
-      <div class="cam-controls">
-        <label>设备
-          <select id="cam-select"></select>
-        </label>
-        <button class="btn primary" id="cam-start">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          启动
-        </button>
-        <button class="btn ghost" id="cam-stop" disabled>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <rect x="6" y="6" width="12" height="12" rx="1" />
-          </svg>
-          停止
-        </button>
-        <button class="btn ghost" id="cam-refresh">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 12a9 9 0 0115.5-6.36L21 8" />
-            <path d="M21 3v5h-5" />
-            <path d="M21 12a9 9 0 01-15.5 6.36L3 16" />
-            <path d="M3 21v-5h5" />
-          </svg>
-          刷新设备
-        </button>
-      </div>
-      <div class="cam-stage" id="cam-stage">
-        <div class="cam-placeholder">选择摄像头并点击「启动」</div>
-        <img id="cam-feed" alt="camera feed" hidden />
-      </div>
+        <div class="cam-controls">
+            <label>设备
+                <select id="cam-select"></select>
+            </label>
+            <button class="btn primary" id="cam-start">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                启动
+            </button>
+            <button class="btn ghost" id="cam-stop" disabled>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <rect x="6" y="6" width="12" height="12" rx="1"/>
+                </svg>
+                停止
+            </button>
+            <button class="btn ghost" id="cam-refresh">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 12a9 9 0 0115.5-6.36L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 01-15.5 6.36L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                </svg>
+                刷新设备
+            </button>
+        </div>
+        <div class="cam-stage" id="cam-stage">
+            <div class="cam-placeholder">选择摄像头并点击「启动」</div>
+            <img id="cam-feed" alt="camera feed" hidden/>
+        </div>
     </section>
 
     <!-- API tab ------------------------------------------------------ -->
     <section class="panel glass" data-panel="api">
-      <h2>本地 API</h2>
-      <p class="api-intro">所有端点以 <code>/api/</code> 开头,CORS 已全开。Swagger 文档:<a href="/docs" target="_blank">/docs</a></p>
-      <div class="endpoints">
-        <div class="endpoint">
-          <h3><span class="method get">GET</span> <code>/api/health</code></h3>
-          <p>服务状态、运行时 provider、模型加载情况。</p>
-        </div>
-        <div class="endpoint">
-          <h3><span class="method post">POST</span> <code>/api/detect/image</code></h3>
-          <p>上传图片,返回带框 + 情绪标签的 JPEG。响应头 <code>X-Face-Count</code> 包含人脸数。</p>
-        </div>
-        <div class="endpoint">
-          <h3><span class="method post">POST</span> <code>/api/detect/frame</code></h3>
-          <p>上传图片,返回 JSON(供其他程序调用):</p>
-<pre><code>{
+        <h2>本地 API</h2>
+        <p class="api-intro">所有端点以 <code>/api/</code> 开头,CORS 已全开。Swagger 文档:<a href="/docs"
+                                                                                            target="_blank">/docs</a>
+        </p>
+        <div class="endpoints">
+            <div class="endpoint">
+                <h3><span class="method get">GET</span> <code>/api/health</code></h3>
+                <p>服务状态、运行时 provider、模型加载情况。</p>
+            </div>
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> <code>/api/detect/image</code></h3>
+                <p>上传图片,返回带框 + 情绪标签的 JPEG。响应头 <code>X-Face-Count</code> 包含人脸数。</p>
+            </div>
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> <code>/api/detect/frame</code></h3>
+                <p>上传图片,返回 JSON(供其他程序调用):</p>
+                <pre><code>{
   "count": 1,
   "inference_ms": 35.2,
   "device": "CPUExecutionProvider",
@@ -207,23 +220,24 @@
     }
   ]
 }</code></pre>
+            </div>
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> <code>/api/detect/video</code></h3>
+                <p>上传视频,返回 <code>{"task_id": "..."}</code>。轮询 <code>/api/detect/video/{task_id}/status</code>
+                    拿进度,完成后从 <code>/api/detect/video/{task_id}/download</code> 下载 MP4。</p>
+            </div>
+            <div class="endpoint">
+                <h3><span class="method get">GET</span> <code>/api/camera/list</code></h3>
+                <p>列出可用摄像头。</p>
+            </div>
+            <div class="endpoint">
+                <h3><span class="method get">GET</span> <code>/api/camera/{id}/stream</code></h3>
+                <p>MJPEG 流,直接在 <code>&lt;img&gt;</code> 标签中使用。</p>
+            </div>
         </div>
-        <div class="endpoint">
-          <h3><span class="method post">POST</span> <code>/api/detect/video</code></h3>
-          <p>上传视频,返回 <code>{"task_id": "..."}</code>。轮询 <code>/api/detect/video/{task_id}/status</code> 拿进度,完成后从 <code>/api/detect/video/{task_id}/download</code> 下载 MP4。</p>
-        </div>
-        <div class="endpoint">
-          <h3><span class="method get">GET</span> <code>/api/camera/list</code></h3>
-          <p>列出可用摄像头。</p>
-        </div>
-        <div class="endpoint">
-          <h3><span class="method get">GET</span> <code>/api/camera/{id}/stream</code></h3>
-          <p>MJPEG 流,直接在 <code>&lt;img&gt;</code> 标签中使用。</p>
-        </div>
-      </div>
 
-      <h3>命令行示例</h3>
-      <pre><code># JSON 检测
+        <h3>命令行示例</h3>
+        <pre><code># JSON 检测
 curl -F "file=@face.jpg" http://localhost:8000/api/detect/frame | jq
 
 # 图片打码返回
@@ -237,10 +251,11 @@ curl -o out.mp4 http://localhost:8000/api/detect/video/abc123/download</code></p
     </section>
 
     <footer class="footer">
-      <a class="footer-brand" href="https://github.com/doge7701/face-emotion-recognition" target="_blank" rel="noopener noreferrer">faceemotionrecognition</a> · <span id="footer-device">device: ?</span>
+        <a class="footer-brand" href="https://github.com/wuhao2343/face-emotion-app" target="_blank"
+           rel="noopener noreferrer">face-emotion-app</a> · <span id="footer-device">device: ?</span>
     </footer>
-  </main>
+</main>
 
-  <script src="/static/app.js" defer></script>
+<script src="/static/app.js" defer></script>
 </body>
 </html>
