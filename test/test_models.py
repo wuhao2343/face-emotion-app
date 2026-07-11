@@ -33,7 +33,7 @@ if __name__ == "__main__":
     h, w = frame_bgr.shape[:2]
     print(f"[图片] 尺寸: {w}x{h}")
 
-    # # 检测
+    # 检测
     annotated, results = pipe.detect_and_draw(frame_bgr)
 
     # 打印结果
